@@ -1,0 +1,11 @@
+selenium
+jupyter
+ccxt
+matplotlib
+ta
+python-binance
+binance
+plotly
+requests
+bs4
+pandas

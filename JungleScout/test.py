@@ -6,8 +6,10 @@ from selenium.webdriver.support import expected_conditions as EC
 
 if __name__ == '__main__':
     options = webdriver.ChromeOptions()
-    options.add_argument(r'--user-data-dir=/home/keranis/.config/google-chrome/Default')
-    options.add_extension('/home/keranis/work&study/Cocobot-jungle-scout-Amazon-scrapping/JungleScout/Login/js.crx')
+    options.add_argument("--user-data-dir=C:\\Users\\mahdi\\AppData\\Local\\Google\\Chrome\\User Data\\Default")
+    options.add_argument("--load-extension=C:\\Users\\mahdi\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\bckjlihkmgolmgkchbpiponapgjenaoa\\7.4.0_0")
+    # options.add_extension("C:\\Users\\mahdi\\Desktop\\don't\\Cocobot-jungle-scout-Amazon-scrapping\\Extension\\js.crx")
     browser = uc.Chrome(options=options)
-    browser.get("https://members.junglescout.com/#/database")
+    browser.get("https://www.google.com")
+    browser.maximize_window()
     input("press enter")

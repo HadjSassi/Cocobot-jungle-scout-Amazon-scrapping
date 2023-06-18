@@ -1,0 +1,28 @@
+,,,,,,,,,
+,"***** Veuiilez compléter la colonne données du tableau  ci-dessous , pour évaluer votre produit.",,,,,,,,
+,,,,,,,,,
+,Critères à confirmer,Évaluation,,,,,,**** Veuillez compléter les espace blancs pour évaluer le budget nécessaire ,
+,ÉTAPE 1 (Obligatoire),Conditions à respecter,Seuil,Données,Score,Résultat,,Estimation du budget ,
+,Volume de recherche du mot-clé principal,Les 2 critère sont à respecter pour passer à l'étape 2,1000 et plus ,22929,"10,00",J,JS,Nbr de ventes journaliere du 6e meilleur vendeur,
+,Profondeur du marché (nbr de vendeurs avec le C.A visé),,6 vendeurs et plus,15,"7,50",J,JS,Cout unitaire du produit jusqu'au entrepôt amazon,
+,ÉTAPE 2 (Exploiter une Faiblesse minimum),,,,,,,Délai de production (jours),
+,Nbr de vendeurs avec 75 reviews et moins ,"Trouver minimum 1 faiblesse parmi les vendeurs qui ont mon C.A visé, pour passer à l'étape 3",50% et plus,1,"0,67",û,,Délai d'expédition (jours),
+,Nbr de vendeurs avec un rating de 4 étoiles et moins ,,70% et plus,9,"6,00",û,,Inventaire de base (jours),30
+,Nbr de vendeurs avec de listing non-optimisé ,,50% et plus,13,"8,67",J,,Délai pour imprévu jours,15
+,Nbr de vendeurs FBM ,,75% et plus,2,"1,33",û,,Nombre de jours d'inventaire recommandé,45
+,Nbr de vendeurs avec une offre similaire ,,50% et plus,8,"5,33",J,,Budget recommandé ($ ou euro),0
+,ÉTAPE 3 (Non-Négociable),,,,,,,Budget minimal ($ ou euro),0
+,La marge de profit,"Les 4 critères doivent être respectés, pour passer à l'étape 4",25% et plus,,,,,,
+,Produit est considéré dangereux ou toxique,,Non,Non,-,J,,Ma proposition de vente unique,
+,Produit est dans une catégorie restreinte,,Non,Non,-,J,,1.,
+,Produit dispose d'un brevet,,Non,Non,-,J,,,
+,ÉTAPE 4 (À vérifier),,,,,,,2.,
+,Nbr de vendeurs avec 500 review et + ,"Les critères de l'étape 4 ne sont pas primordiaux mais, augmente les chance de succès.   Parmi les vendeurs qui ont mon C.A visé.",40% et moins,0,"10,00",J,,,
+,BSR Constant (verifie la saisonnalité),,70% et plus,8,"5,33",û,JS,3.,
+,Constance des Prix (si les prix sont stables ou à la hausse),,70% et plus,9,"6,00",û,,,
+,Nombre de produits qui sont vendus par Amazon,,75% et plus,0,"10,00",J,,4.,
+,Vérifier le coût par clic sur le mot clé principal ,,"2,00 $/euro ou moins",Entre 0.01 et 0.50,"10,00",J,,,
+,Nbre d'offres de marque populaire ,,50% ou moins,0,"10,00",J,,5.,
+,Nbr de vendeurs avec des ventes en croissance,,50% et plus,6,"4,00",û,,,
+,Nbr de vendeurs avec un taux de reviews 5% et plus,,40% et moins,,,,,6.,
+,Opportunity Score sur 160 pts,Avoir une note minimal de 90 pts,,,"94,83",J,,,

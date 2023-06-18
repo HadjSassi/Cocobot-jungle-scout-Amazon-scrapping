@@ -6,7 +6,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import booking.constants as const
 from bs4 import BeautifulSoup
-
+import pytesseract
+from PIL import Image
 
 class Searching(webdriver.Chrome):
     def __init__(self, teardown=False):
@@ -41,6 +42,21 @@ class Searching(webdriver.Chrome):
                 'sp-cc-rejectall-link'
             )
             closebtn.click()
+        except:
+            pass
+
+    def AmNotARobot(self):
+        try:
+            # self.implicitly_wait(100)
+            time.sleep(10)
+            input = self.find_element(
+                By.ID,"captchacharacters"
+            )
+            image_link = self.find_element(
+                By.CLASS_NAME,"a-row a-text-center"
+            ).find_element(By.TAG_NAME,"img").text.strip()
+            print("The image url is ",image_link)
+            # self.find_element(By.CLASS_NAME,"a-button-text").click()
         except:
             pass
 
@@ -103,6 +119,7 @@ class Searching(webdriver.Chrome):
             link = i.Product_link
             with Searching() as bot:
                 bot.getPage(link)
+                bot.AmNotARobot()
                 bot.close_PoP_Up()
                 # time.sleep(10)
                 # htmlcontent = self.getHtmlSource()

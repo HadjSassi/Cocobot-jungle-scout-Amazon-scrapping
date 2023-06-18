@@ -8,4 +8,6 @@ binance
 plotly
 requests
 bs4
+pytesseract
 pandas
+undetected-chromedriver

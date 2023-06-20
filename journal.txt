@@ -1,0 +1,50 @@
+Thursday 1st June 2023:
+    -Cahier des charges, et reunion d'intégration
+
+Saturday 3rd June 2023:
+    -Environment Installing and preparation
+
+Monday 5th June 2023:
+    -Data Preprocessing, téléchargement des donnés à partir l'API Binance de Javascript, netoyage, presentation sur Dataframe
+
+Tuesday 6th June 2023:
+    -Début de la partie 1 : sortir les 6 meilleurs cryptos
+
+Wednesday 7th June 2023:
+    -Partie 2: faire un dataframe avec les pool de chaque date, le valeur de Botmax pour chaque pool
+
+Thursday 8th June 2023:
+    -Correction Buy 1er Partie
+    -finish partie2 : Dataframe
+    -Pour chaque Ni,DeltaHour -> un pool for All periode
+
+Saturday 10th June 2023:
+    -Finish the notebook:
+    -Calculate the botmax for each periode of time
+    -Aggregate the result so we have the final botmax for each combination
+
+Monday 12th june 2023:
+    -Amazon Trainings
+
+Tuesday 13th June 2023:
+    -Installing environment and preparation
+    -Scrapping on Amazon for a query to get a dataframe for each product, the dataframe is constructed by the name of the product, the price, the rating, the bullet points, the comments
+    -Using Beautiful soup was unlimited, so passed to learn selenium
+
+Wednesday 14th June 2023:
+    -Finish Scrapping and fixing the bugs, using selenium
+    -Identifying the needs, for finding the volume of the research, number of sellers, profit marge, classification of the product
+    -Starting to learn Jungle Scout
+
+Thursday 15th June 2023:
+    -Create a Jungle Scout account + get the chrome extension
+    -Start scraping with selenium, but facing bot authentication problem
+
+Saturday 17th June 2023:
+    -Searching for solving the bugs, found the undetected_chromedriver library
+    -Installing and preparing the environment
+
+Monday 19th June 2023:
+    -From the Jungle Scout Extension we download a csv file for all the products for a specific query
+
+Tuesday 20th June 2023:

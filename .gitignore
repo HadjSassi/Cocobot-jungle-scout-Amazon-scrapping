@@ -1,4 +1,3 @@
-./journal.txt
 venv
 booking
 scrapping.ipynb
@@ -8,4 +7,5 @@ test
 Amazon.ipynb
 run.py
 test.py
-
+CSVs
+journal.txt

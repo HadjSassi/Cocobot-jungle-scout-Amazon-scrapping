@@ -5,7 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import JungleScout.Login.constants as const
+import JungleScout.Jungle.constants as const
 
 
 options = webdriver.ChromeOptions()
@@ -25,20 +25,13 @@ class Jungle_Scout(uc.Chrome):
         else:
             input('Press Any key to close the program and press enter')
 
-    def Amazon_Jungle_Scout_Extension(self):
-        query = input("What would you search ?")
-        # query = "I phone 10"
+    def Amazon_Jungle_Scout_Extension(self,query):
         self.get(const.amazon + f"/s?k={query.replace(' ', '+')}")
         self.implicitly_wait(100)
         self.switch_to.window(self.window_handles[1])
         self.close()
         self.switch_to.window(self.window_handles[0])
         self.implicitly_wait(100)
-        time.sleep(10)
-        try:
-            asin = self.find_elements(By.CSS_SELECTOR,"span.Asin-sc-5055fd-1")[0].text.strip()
-        except:
-            asin = "Error404"
         try :
             # jsBtn = WebDriverWait(self, 100).until(
             #     EC.presence_of_element_located((By.ID, "popup-button"))
@@ -72,7 +65,7 @@ class Jungle_Scout(uc.Chrome):
             jsBtn.click()
         except ZeroDivisionError:
             print("Jungle Scout Exception please contact your administrator!")
-        self.Amazon_Jungle_Scout_WebApp(asin)
+        self.Amazon_Jungle_Scout_WebApp(query)
 
 
     def Amazon_Jungle_Scout_WebApp(self,query):

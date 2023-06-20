@@ -1,4 +1,4 @@
-from JungleScout.Login.Login import Login
+from JungleScout.Login.Jungle_Scout import Jungle_Scout
 import pandas as pd
 
 import requests
@@ -48,5 +48,5 @@ if __name__ == '__main__':
     # else:
     #     print("Failed to authenticate with NordVPN. Error:", auth_response.content.decode())
 
-    with Login() as bot:
-        bot.land_first_page()
+    with Jungle_Scout(True) as bot:
+        bot.Amazon_Jungle_Scout_Extension()

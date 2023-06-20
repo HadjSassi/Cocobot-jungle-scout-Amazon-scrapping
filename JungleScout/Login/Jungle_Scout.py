@@ -6,14 +6,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import JungleScout.Login.constants as const
-from bs4 import BeautifulSoup
-import pytesseract
-from PIL import Image
+
 
 options = webdriver.ChromeOptions()
 options.add_argument("--user-data-dir=/home/keranis/.config/google-chrome/Default")
 options.add_argument("--load-extension=/home/keranis/.config/google-chrome/Default/Extensions/bckjlihkmgolmgkchbpiponapgjenaoa/7.4.0_0")
-class Login(uc.Chrome):
+class Jungle_Scout(uc.Chrome):
     def __init__(self, teardown=False):
         self.teardown = teardown
         super().__init__(options=options)
@@ -27,20 +25,25 @@ class Login(uc.Chrome):
         else:
             input('Press Any key to close the program and press enter')
 
-    def land_first_page(self):
-        # query = input("What would you search ?")
-        query = "I phone 10"
+    def Amazon_Jungle_Scout_Extension(self):
+        query = input("What would you search ?")
+        # query = "I phone 10"
         self.get(const.amazon + f"/s?k={query.replace(' ', '+')}")
         self.implicitly_wait(100)
         self.switch_to.window(self.window_handles[1])
         self.close()
         self.switch_to.window(self.window_handles[0])
         self.implicitly_wait(100)
-        time.sleep(5)
+        time.sleep(10)
+        try:
+            asin = self.find_elements(By.CSS_SELECTOR,"span.Asin-sc-5055fd-1")[0].text.strip()
+        except:
+            asin = "Error404"
         try :
             # jsBtn = WebDriverWait(self, 100).until(
             #     EC.presence_of_element_located((By.ID, "popup-button"))
             # )
+            # get an ASIN to send instead of the query
             jsBtn = self.find_element(By.ID,"popup-button")
             jsBtn.click()
             time.sleep(5)
@@ -69,3 +72,30 @@ class Login(uc.Chrome):
             jsBtn.click()
         except ZeroDivisionError:
             print("Jungle Scout Exception please contact your administrator!")
+        self.Amazon_Jungle_Scout_WebApp(asin)
+
+
+    def Amazon_Jungle_Scout_WebApp(self,query):
+        self.implicitly_wait(10)
+        self.switch_to.new_window('tab')
+        time.sleep(10)
+        self.get(const.jungle)
+        time.sleep(10)
+        queryinput = self.find_element(By.CSS_SELECTOR,"#app-content > div.RouterWrapper-irb435-0.hMZnjS > div > div.SearchFormRow-sc-14j0gpg-1.ueHnh > div > div.InputWrapper-sc-14j0gpg-3.fPGlHF > div.OuterWrapper-sc-6mbi0x-0.dMYXsn > div > div > div > div > input")
+        queryinput.send_keys(query)
+        time.sleep(3)
+        marketPlace = self.find_element(By.CSS_SELECTOR,"#app-content > div.RouterWrapper-irb435-0.hMZnjS > div > div.SearchFormRow-sc-14j0gpg-1.ueHnh > div > div:nth-child(2) > div.multiselect.no-select.StyledMultiSelect-sc-1ntwfbj-0.hKaUJS.MarketplaceSelectorIconsOnly-sc-14j0gpg-2.hPNqla > div.trigger")
+        marketPlace.click()
+        time.sleep(3)
+        france = self.find_element(By.CSS_SELECTOR,"#app-content > div.RouterWrapper-irb435-0.hMZnjS > div > div.SearchFormRow-sc-14j0gpg-1.ueHnh > div > div:nth-child(2) > div.multiselect.no-select.StyledMultiSelect-sc-1ntwfbj-0.hKaUJS.MarketplaceSelectorIconsOnly-sc-14j0gpg-2.hPNqla.multiselect--open > div.dropdown > div > ul > li:nth-child(5)")
+        france.click()
+        time.sleep(3)
+        searchbtn = self.find_element(By.CSS_SELECTOR,"#app-content > div.RouterWrapper-irb435-0.hMZnjS > div > div.SearchFormRow-sc-14j0gpg-1.ueHnh > div > div.ButtonContainer-sc-14j0gpg-4.iNiYnD > button")
+        searchbtn.click()
+        time.sleep(10)
+        downloadbtn = self.find_element(By.CSS_SELECTOR,"#filterAnchor > button")
+        downloadbtn.click()
+        time.sleep(10)
+        downloadbtn = self.find_element(By.CLASS_NAME,"notification-action-button")
+        downloadbtn.click()
+        time.sleep(10)

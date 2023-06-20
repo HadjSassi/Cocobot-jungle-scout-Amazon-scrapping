@@ -62,28 +62,10 @@ class Login(uc.Chrome):
             print("we'll start downloading")
             jsBtn.click()
             time.sleep(5)
-            jsBtn = self.find_element(By.CSS_SELECTOR,"#radix-\:r22e\: > div > div:nth-child(1)")
+            # jsBtn = self.find_element(By.CSS_SELECTOR,"#radix-\:r22e\: > div > div:nth-child(1)")
+            # jsBtn = self.find_element(By.CSS_SELECTOR,"#radix-\:rsq\: > div > div:nth-child(1)")
+            jsBtn = self.find_elements(By.CSS_SELECTOR, ".Flex-sc-sqmtka-0.Container-sc-6f3o0q-0.ftsCjc.Aroud")[0]
             print("download")
             jsBtn.click()
         except ZeroDivisionError:
             print("Jungle Scout Exception please contact your administrator!")
-
-        # time.sleep(5)
-        # email = self.find_element(
-        #     By.ID, "email"
-        # )
-        # email.clear()
-        # email.send_keys("anisse9@gmail.com")
-        # pswd = self.find_element(
-        #     By.ID, "current-password"
-        # )
-        # pswd.clear()
-        # pswd.send_keys("million10")
-
-        # time.sleep(5)
-        # self.find_element(
-        #     By.CLASS_NAME, "ButtonWrapper-sc-1qb4ldc-0"
-        # ).click()
-        # self.get(const.google)
-        # option = webdriver.ChromeOptions
-        # option.add_extension("")

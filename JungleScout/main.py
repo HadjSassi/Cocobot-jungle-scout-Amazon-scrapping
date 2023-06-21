@@ -4,18 +4,24 @@ import shutil
 import openpyxl
 import pandas as pd
 
-download_folder = "/home/keranis/Downloads"
+#inputs
+chiffreAffaireVise = int(input("C'est quoi le Chiffre Affaire visé ?"))
+# query = input("What would you search ?")
+query = "I phone 10"
+
 volumeRechercheDuMotClePrincipal = ""
 profondeurDuMarche_nbrDeVendeursAvecLeCAVise = ""
 nbrDeVendeursAvec75ReviewsEtMoins = ""
 nbrDeVendeursAvecUnRatingDe4EtoilesEtMoins = ""
 nbrDeVendeursAvecDeLisingNonOptimise = ""
 nbrDeVendeursFBM = ""
-nbrDeVendeursAvecUneOffreSimilaire = ""
-laMargeDeProfit = ""
-produitEstConsidereDangereuxOuToxique = ""
-produitestDansUneCategorieRestriente = ""
-produitDisposeDunBrevet = ""
+nbrDeVendeursAvecUneOffreSimilaire = int(input("C'est quoi le nombre de vendeur avec une offre similaire ?"))
+laMargeDeProfit = float(input("Donner la marge de profit"))
+produitEstConsidereDangereuxOuToxique = input("Est il un Produit considéré dangereux ou toxique? Entrez Oui/Non").capitalize()
+produitestDansUneCategorieRestriente = input("Est il un Produit dans une catégorie restriente? Entrez Oui/Non").capitalize()
+produitDisposeDunBrevet = input("Est il un Produit qui dispose d'un brevet? Entrez Oui/Non").capitalize()
+
+# on peut les ignorer
 nbDeVendeursAvec500review = ""
 BSRConstant_verifieLaSaisonnalite = ""
 constanceDesPrix_siLesPrixSontStablesOuAlaHausse = ""
@@ -24,12 +30,10 @@ verifierLeCoutParClicSurLeMotClePrincipal = ""
 nbreDOffreDeMarquePopulaire = ""
 nbrDeVendeursAvecDesVentesEnCroissances = ""
 nbrDeVendeursAvecUnTauxDeReviews5EtPlus = ""
+download_folder = "/home/keranis/Downloads"
 
-targeted_revenue = 8768  # Replace with your targeted revenue
-# targeted_revenue = int(input("Donner le chiffre affaire visés"))
 
-# query = input("What would you search ?")
-query = "I phone 10"
+
 
 if __name__ == '__main__':
 
@@ -57,6 +61,13 @@ if __name__ == '__main__':
     #     # print(f"Moved '{file}' to the '../CSVs' folder.")
 
     files = os.listdir(csv_folder)
+    matching_files = [file for file in files if file.startswith("Keyword")]
+    if matching_files:
+        file_path = os.path.join(csv_folder, matching_files[-1])  # Get the path of the last matching file
+        df = pd.read_csv(file_path, delimiter=',', skiprows=3)
+        volumeRechercheDuMotClePrincipal = df.iloc[0, 1]
+    else:
+        print("Please Contact The administrator")
     matching_files = [file for file in files if file.startswith("Search Term")]
     if matching_files:
         file_path = os.path.join(csv_folder, matching_files[-1])  # Get the path of the last matching file
@@ -65,37 +76,22 @@ if __name__ == '__main__':
         df['Évaluation'] = pd.to_numeric(df['Évaluation'], errors='coerce')
         df['Avis'] = pd.to_numeric(df['Avis'], errors='coerce')
         df['Ventes mensuelles'] = pd.to_numeric(df['Ventes mensuelles'], errors='coerce')
+        df['Revenus mensuels'] = df['Revenus mensuels'].str.replace('€', '').str.replace(',', '').astype(float)
 
-        profondeurDuMarche_nbrDeVendeursAvecLeCAVise = len(df[df['Revenus mensuels'] == targeted_revenue])
-        print("Profondeur du marché (nombre de vendeurs avec un chiffre d'affaires visé):",
-              profondeurDuMarche_nbrDeVendeursAvecLeCAVise)
+        profondeurDuMarche_nbrDeVendeursAvecLeCAVise = len(df[df['Revenus mensuels'] >= chiffreAffaireVise])
+        df = df[df['Revenus mensuels'] >= chiffreAffaireVise]
         nbrDeVendeursAvec75ReviewsEtMoins = len(df[df['Avis'] <= 75])
-        print("Nombre de vendeurs avec 75 avis ou moins:", nbrDeVendeursAvec75ReviewsEtMoins)
         nbrDeVendeursAvecUnRatingDe4EtoilesEtMoins = len(df[df['Évaluation'] <= 4])
-        print("Nombre de vendeurs avec une évaluation de 4 étoiles ou moins:",
-              nbrDeVendeursAvecUnRatingDe4EtoilesEtMoins)
         nbrDeVendeursFBM = df["Type de vendeur"].value_counts()["FBM"]
-        print("Number of FBA values:", nbrDeVendeursFBM)
         nbDeVendeursAvec500review = len(df[df['Avis'] >= 500])
-        print("Nombre de vendeurs avec 500 avis ou plus:", nbDeVendeursAvec500review)
-        nombreDeProduitsQuiSontVendusParAmazon = len(df[df['Type de vendeur'] == 'FBA'])
-        print("Nombre de produits vendus par Amazon:", nombreDeProduitsQuiSontVendusParAmazon)
+        nombreDeProduitsQuiSontVendusParAmazon = len(df[df['Type de vendeur'].str.upper().isin(['FBA', 'AMAZON'])])
         df['Taux_reviews'] = df['Avis'] / df['Ventes mensuelles']
         filtered_df = df[df['Taux_reviews'] >= 0.05]
         nbrDeVendeursAvecUnTauxDeReviews5EtPlus = len(filtered_df)
-        print("Nombre de vendeurs avec un taux de reviews de 5% ou plus:", nbrDeVendeursAvecUnTauxDeReviews5EtPlus)
-
-        matching_files = [file for file in files if file.startswith("Keyword")]
-        if matching_files:
-            file_path = os.path.join(csv_folder, matching_files[-1])  # Get the path of the last matching file
-            df = pd.read_csv(file_path, delimiter=',', skiprows=3)
-            volumeRechercheDuMotClePrincipal = df.iloc[0, 1]
-            print("Volume Recherche Du Mot Cle Principal:", volumeRechercheDuMotClePrincipal)
-        else:
-            print("Please Contact The administrator")
+        nbrDeVendeursAvecDeLisingNonOptimise = len(df[df['LQS'] > 4])
     else:
         print("Please Contact The administrator ")
-
+    print("Sauvegarde Dans Le Rapport")
     file_path = "rapport.xlsx"
     workbook = openpyxl.load_workbook(file_path)
     # Get the first sheet
@@ -120,7 +116,7 @@ if __name__ == '__main__':
     sheet["E21"] = BSRConstant_verifieLaSaisonnalite
     sheet["E22"] = constanceDesPrix_siLesPrixSontStablesOuAlaHausse
     sheet["E23"] = nombreDeProduitsQuiSontVendusParAmazon
-    sheet["E24"] = verifierLeCoutParClicSurLeMotClePrincipal
+    # sheet["E24"] = verifierLeCoutParClicSurLeMotClePrincipal
     sheet["E25"] = nbreDOffreDeMarquePopulaire
     sheet["E26"] = nbrDeVendeursAvecDesVentesEnCroissances
     sheet["E27"] = nbrDeVendeursAvecUnTauxDeReviews5EtPlus

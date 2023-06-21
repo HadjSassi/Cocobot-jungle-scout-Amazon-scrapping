@@ -48,3 +48,10 @@ Monday 19th June 2023:
     -From the Jungle Scout Extension we download a csv file for all the products for a specific query
 
 Tuesday 20th June 2023:
+    -From the Jungle Scout Web App, Donwload a complementary csv file
+    -Match Between the csv Files
+
+Wednesday 21th June 2023:
+    -Fill the Rapport with the Excel file with the proper values
+    -table of inputs instead of human interventions
+

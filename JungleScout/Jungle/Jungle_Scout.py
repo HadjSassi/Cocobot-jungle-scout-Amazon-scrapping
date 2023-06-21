@@ -37,15 +37,16 @@ class Jungle_Scout(uc.Chrome):
             #     EC.presence_of_element_located((By.ID, "popup-button"))
             # )
             # get an ASIN to send instead of the query
+            time.sleep(15)
             jsBtn = self.find_element(By.ID,"popup-button")
             jsBtn.click()
-            time.sleep(5)
+            time.sleep(15)
             stillRecherche = True
             while(stillRecherche):
                 try:
                     jsBtn = self.find_element(By.CSS_SELECTOR,"#jsExtensionBaseModalId > div.Container-sc-1tzcbkm-1.gNfIMq > div > div.Flex-sc-sqmtka-0.TableContainer-sc-ybu0mp-1.bXUgal.hhoMvF > div.Flex-sc-sqmtka-0.Container-sc-n6pzpt-0.eQnaRt.huoEMs > div:nth-child(2) > div.Flex-sc-sqmtka-0.ftsCjc > button")
                     jsBtn.click()
-                    time.sleep(5)
+                    time.sleep(15)
                     updatedContent = self.find_element(By.CSS_SELECTOR,"#jsExtensionBaseModalId > div.Container-sc-1tzcbkm-1.gNfIMq > div > div.Flex-sc-sqmtka-0.TableContainer-sc-ybu0mp-1.bXUgal.hhoMvF > div.Flex-sc-sqmtka-0.Container-sc-n6pzpt-0.eQnaRt.huoEMs > div:nth-child(2) > div.Flex-sc-sqmtka-0.ftsCjc > button > div > div")
                     print("->", updatedContent.text)
                     if updatedContent.text != "Charger plus de résultats" and updatedContent.text != "Loading...":
@@ -57,7 +58,7 @@ class Jungle_Scout(uc.Chrome):
             jsBtn = self.find_element(By.CSS_SELECTOR,"#jsExtensionBaseModalId > div.Container-sc-1tzcbkm-1.gNfIMq > div > div.Flex-sc-sqmtka-0.TableContainer-sc-ybu0mp-1.bXUgal.hhoMvF > div.Flex-sc-sqmtka-0.Container-sc-n6pzpt-0.eQnaRt.huoEMs > div:nth-child(1) > div.Flex-sc-sqmtka-0.kGVKPL > div > div > div")
             print("we'll start downloading")
             jsBtn.click()
-            time.sleep(5)
+            time.sleep(15)
             # jsBtn = self.find_element(By.CSS_SELECTOR,"#radix-\:r22e\: > div > div:nth-child(1)")
             # jsBtn = self.find_element(By.CSS_SELECTOR,"#radix-\:rsq\: > div > div:nth-child(1)")
             jsBtn = self.find_elements(By.CSS_SELECTOR, ".Flex-sc-sqmtka-0.Container-sc-6f3o0q-0.ftsCjc.Aroud")[0]
@@ -71,9 +72,9 @@ class Jungle_Scout(uc.Chrome):
     def Amazon_Jungle_Scout_WebApp(self,query):
         self.implicitly_wait(10)
         self.switch_to.new_window('tab')
-        time.sleep(10)
+        time.sleep(15)
         self.get(const.jungle)
-        time.sleep(10)
+        time.sleep(15)
         queryinput = self.find_element(By.CSS_SELECTOR,"#app-content > div.RouterWrapper-irb435-0.hMZnjS > div > div.SearchFormRow-sc-14j0gpg-1.ueHnh > div > div.InputWrapper-sc-14j0gpg-3.fPGlHF > div.OuterWrapper-sc-6mbi0x-0.dMYXsn > div > div > div > div > input")
         queryinput.send_keys(query)
         time.sleep(3)
